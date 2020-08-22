@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+$theme-colors: (
+    "primary":    #b867c6,
+    "secondary":  #f3e5f5,
+    "success":    #388e3c,
+    "info":       #00acc1,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      #f3e5f5,
+    "dark":       #863895
+);
+
+
+body {
+    color: gray('800');
+    background-color: theme-color('light');
+}
