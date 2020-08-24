@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "fitness-app"
+    }
+  },
+  "defaultProject": "fitness-app",
+  "cli": {
+    "analytics": false
+  }
 }
