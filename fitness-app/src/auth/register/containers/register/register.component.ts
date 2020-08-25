@@ -2,17 +2,16 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-register',
-    template: `
-        <div>
-            Register
-            <app-auth-form>
-            </app-auth-form>
-        </div>
-    `
+    templateUrl: 'register.component.html',
+    styleUrls: ['register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    register(event): void {
+        console.log(event);
+    }
 }

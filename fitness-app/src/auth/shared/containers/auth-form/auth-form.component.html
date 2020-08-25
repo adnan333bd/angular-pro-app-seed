@@ -1,5 +1,5 @@
-<div class="auth-form">
-    <form (ngSubmit)="0"
+<div class="auth-form p-5 bg-white border shadow-sm">
+    <form (ngSubmit)="onSubmit()"
           [formGroup]="form">
 
         <ng-content select="h1"></ng-content>
@@ -24,14 +24,17 @@
             </label>
     
         </div>
-        <ng-content select=".error"></ng-content>
 
-        <div class="auth-form__action">
+        <div class="mb-3">
             <ng-content select="button"></ng-content>
+        </div>        
+
+        <div class="my-3 text-secondary">
+            <ng-content select="a"></ng-content>
         </div>
 
-        <div class="auth-form__toggle">
-            <ng-content select="a"></ng-content>
+        <div class="alert-danger border rounded p-1 my-2 mr-3 border-secondary">
+            <ng-content select=".error"></ng-content>
         </div>
 
     </form>

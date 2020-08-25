@@ -1,8 +1,8 @@
 <div id="login" class="d-flex flex-column justify-content-center align-items-center">
-    <app-auth-form>
+    <app-auth-form (submitted)="login($event)">
         <h1>Login</h1>
         <button class="btn btn-primary" type="submit">Login</button>
         <div class="error">somethin went wrong</div>
-        <a class="btn btn-link" >register</a>
+        <a routerLink="/auth/register" >Not registered?</a>
     </app-auth-form>
 </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroupDirective, FormGroup } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-auth-form',
@@ -8,7 +8,24 @@ import { FormGroupDirective, FormGroup } from '@angular/forms';
 })
 
 export class AuthFormComponent implements OnInit {
-    constructor() { }
-    form: FormGroup;
-    ngOnInit() { }
+    form = this.fb.group({
+        email: '',
+        password: ''
+    });
+
+    @Output()
+    submitted = new EventEmitter();
+
+    constructor(private fb: FormBuilder) { }
+
+
+    ngOnInit(): void {
+
+    }
+
+    onSubmit(): void {
+        if (this.form.valid) {
+            this.submitted.emit(this.form.value);
+        }
+    }
 }

@@ -1,0 +1,8 @@
+<div id="register" class="d-flex flex-column justify-content-center align-items-center">
+    <app-auth-form (submitted)="register($event)">
+        <h1>Register</h1>
+        <button class="btn btn-primary" type="submit">Register</button>
+        <div class="error">somethin went wrong</div>
+        <a routerLink="/auth/login" class="" >Already have an account?</a>
+    </app-auth-form>
+</div>

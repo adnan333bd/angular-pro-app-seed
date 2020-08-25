@@ -9,5 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
+
+    login(event): void {
+        console.log(event);
+    }
 }
