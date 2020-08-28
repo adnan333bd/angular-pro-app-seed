@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
     selector: 'app-auth-form',
@@ -8,9 +8,13 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 
 export class AuthFormComponent implements OnInit {
+
+    @Input()
+    x: string;
+
     form = this.fb.group({
-        email: '',
-        password: ''
+        email: ['', [Validators.email, Validators.required]],
+        password: ['', Validators.required]
     });
 
     @Output()
@@ -27,5 +31,27 @@ export class AuthFormComponent implements OnInit {
         if (this.form.valid) {
             this.submitted.emit(this.form.value);
         }
+    }
+
+    getControl(name: string): AbstractControl {
+        return this.form.get('email');
+    }
+
+    get emailPatterError(): boolean {
+        const emailCtrl = this.getControl('email');
+        return emailCtrl.dirty && !this.emailRequiredError && emailCtrl.hasError('email');
+    }
+
+    get emailRequiredError(): boolean {
+        return this.getCtrlRequiredError('email');
+    }
+
+    get passwordRequiredError(): boolean {
+        return this.getCtrlRequiredError('password');
+    }
+
+    getCtrlRequiredError(name: string): boolean {
+        const ctrl = this.getControl(name);
+        return ctrl.dirty && ctrl.hasError('required');
     }
 }

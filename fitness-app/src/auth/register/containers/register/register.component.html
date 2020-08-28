@@ -1,8 +1,11 @@
 <div id="register" class="d-flex flex-column justify-content-center align-items-center">
     <app-auth-form (submitted)="register($event)">
-        <h1>Register</h1>
+        <h1>{{title}}</h1>
         <button class="btn btn-primary" type="submit">Register</button>
-        <div class="error">somethin went wrong</div>
+        <div *ngIf="error"
+             class="error alert-danger border rounded p-1 my-2 mr-3 border-secondary">
+            {{error}}
+        </div>
         <a routerLink="/auth/login" class="" >Already have an account?</a>
     </app-auth-form>
 </div>

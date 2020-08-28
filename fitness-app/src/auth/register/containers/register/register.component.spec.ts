@@ -1,12 +1,19 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RegisterComponent } from './register.component';
+import { By } from '@angular/platform-browser';
+import { SharedModule } from '../../../shared/shared.module';
 
 describe('ReigsterComponent', () => {
+
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        SharedModule
       ],
       declarations: [
         RegisterComponent
@@ -14,22 +21,23 @@ describe('ReigsterComponent', () => {
     }).compileComponents();
   }));
 
-  it('should be able to create the component', () => {
-    const fixture = TestBed.createComponent(RegisterComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
- /*  it(`should have as title 'fitness-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('fitness-app');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RegisterComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('fitness-app app is running!');
-  }); */
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it(`should have as title 'Register'`, () => {
+    expect(component.title).toEqual('Register');
+  });
+
+  it(`should have h1 tag with "Register"`, () => {
+    const h1Element = fixture.debugElement.query(By.css('h1'));
+    // debugger;
+    expect(h1Element.nativeElement.textContent).toBe('Register');
+  });
 });

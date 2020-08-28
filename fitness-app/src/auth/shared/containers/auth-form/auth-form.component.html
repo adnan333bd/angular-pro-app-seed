@@ -13,7 +13,7 @@
                        formControlName="email">
             </label>
         </div>
-        
+
         <div class="form-group">
             <label for="user-password">
                 Password
@@ -22,20 +22,19 @@
                        class="form-control"
                        formControlName="password">
             </label>
-    
+
         </div>
 
         <div class="mb-3">
             <ng-content select="button"></ng-content>
-        </div>        
+        </div>
 
         <div class="my-3 text-secondary">
             <ng-content select="a"></ng-content>
         </div>
 
-        <div class="alert-danger border rounded p-1 my-2 mr-3 border-secondary">
-            <ng-content select=".error"></ng-content>
-        </div>
+        <ng-content select=".error"></ng-content>
+
 
     </form>
 </div>
