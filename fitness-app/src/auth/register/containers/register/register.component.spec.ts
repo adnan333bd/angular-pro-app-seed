@@ -64,13 +64,32 @@ describe('ReigsterComponent', () => {
     expect(loginAnchor.textContent).toBe('Already have an account?');
   });
 
+  it(`should not have a Div with .error`, () => {
+    const divs = fixture.debugElement.queryAll(By.css('div.error'));
+    expect(divs.length).toBe(0);
+  });
+
+  it(`should have a Div with .error when error is set with a string`, () => {
+    component.error = 'could not register';
+    fixture.detectChanges();
+    const divs = fixture.debugElement.queryAll(By.css('div.error'));
+    expect(divs.length).toBe(1);
+  });
+
+  it(`should show error string in the UI`, () => {
+    component.error = 'could not register';
+    fixture.detectChanges();
+    const errorDiv = fixture.debugElement.queryAll(By.css('div.error'))[0].nativeElement;
+    expect(errorDiv.textContent).toBe('could not register');
+  });
+
   // routing
   it('should nav. to / before anchor click', () => {
     const location = TestBed.inject(Location);
     expect(location.path()).toBe('');
   });
 
-  it('should nav. to /login on anchor click', async () => {
+  it('should nav. to auth/login on anchor click', async () => {
     const links = fixture.debugElement.queryAll(By.css('a'));
     const loginAnchor: HTMLAnchorElement = links[0].nativeElement;
     loginAnchor.click();
@@ -81,11 +100,7 @@ describe('ReigsterComponent', () => {
     });
   });
 
-
-
-
 });
-
 
 
 @Component({

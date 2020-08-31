@@ -5,9 +5,7 @@
         <button class="btn btn-primary"
                 type="submit">{{title}}</button>
         <div *ngIf="error"
-             class="error alert-danger border rounded p-1 my-2 mr-3 border-secondary">
-            {{error}}
-        </div>
+             class="error alert-danger border rounded p-1 my-2 mr-3 border-secondary">{{error}}</div>
         <a routerLink="/auth/register">Not registered?</a>
     </app-auth-form>
 </div>
