@@ -9,35 +9,35 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 
 export class AuthFormComponent implements OnInit {
 
-    @Input()
-    x: string;
-
     form = this.fb.group({
         email: ['', [Validators.email, Validators.required]],
         password: ['', Validators.required]
     });
 
     @Output()
-    submitted = new EventEmitter();
+    submitted = new EventEmitter<FormGroup>();
 
     constructor(private fb: FormBuilder) { }
 
-
     ngOnInit(): void {
-
     }
 
     onSubmit(): void {
         if (this.form.valid) {
-            this.submitted.emit(this.form.value);
+            this.submitted.emit(this.form);
         }
     }
 
-    getControl(name: string): AbstractControl {
-        return this.form.get('email');
+    private getControl(name: string): AbstractControl {
+        return this.form.get(name);
     }
 
-    get emailPatterError(): boolean {
+    private getCtrlRequiredError(name: string): boolean {
+        const ctrl = this.getControl(name);
+        return ctrl.dirty && ctrl.hasError('required');
+    }
+
+    get emailPatternError(): boolean {
         const emailCtrl = this.getControl('email');
         return emailCtrl.dirty && !this.emailRequiredError && emailCtrl.hasError('email');
     }
@@ -48,10 +48,5 @@ export class AuthFormComponent implements OnInit {
 
     get passwordRequiredError(): boolean {
         return this.getCtrlRequiredError('password');
-    }
-
-    getCtrlRequiredError(name: string): boolean {
-        const ctrl = this.getControl(name);
-        return ctrl.dirty && ctrl.hasError('required');
     }
 }

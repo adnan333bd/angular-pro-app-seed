@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { AuthService } from 'src/auth/shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -9,11 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
     title = 'Register';
     error = '';
-    constructor() { }
+
+    constructor(private authService: AuthService, private router: Router) { }
 
     ngOnInit(): void { }
 
-    register(event): void {
-        console.log(event);
+    async register(event: FormGroup): Promise<void> {
+        const { email, password } = event.value;
+        try {
+            await this.authService.createUser(email, password);
+            this.router.navigate(['/']);
+        } catch (err) {
+            this.error = err;
+        }
     }
 }

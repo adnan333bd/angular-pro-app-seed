@@ -28,8 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              
-             
               "src/styles.scss"
             ],
             "scripts": []
@@ -124,6 +122,10 @@
               "devServerTarget": "fitness-app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
