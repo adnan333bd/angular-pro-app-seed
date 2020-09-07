@@ -7,10 +7,15 @@ import { Subscription, Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
-  template: `<div class="wrapper">
-                <h1>{{user$ | async | json}}</h1>
-                <router-outlet></router-outlet>
-             </div>`
+  template: `
+              <div>
+                <app-header></app-header>
+                <app-nav></app-nav>
+                <div class="wrapper">
+                  <router-outlet></router-outlet>
+                </div>
+              </div>
+              `
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'fitness app';

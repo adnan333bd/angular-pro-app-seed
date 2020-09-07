@@ -1,24 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// component
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppNavComponent } from './components/app-nav/app-nav.component';
 
-import { AppComponent } from './app.component';
+// containers
+import { AppComponent } from './containers/app/app.component';
 
+// app routing
+import { AppRoutingModule } from './app-routing.module';
+
+// feature module
 import { AuthModule } from '../auth/auth.module';
-import { Routes, RouterModule } from '@angular/router';
+
 import { Store } from 'store';
 
-// routes
-export const ROUTES: Routes = [];
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppHeaderComponent,
+    AppNavComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    AppRoutingModule,
     AuthModule
   ],
   providers: [Store],

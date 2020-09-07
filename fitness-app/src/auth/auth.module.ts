@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './auth-routing.module';
+
+
+// auth routing
+import { AuthRoutingModule } from './auth-routing.module';
 
 // third-party models
 import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
@@ -26,7 +28,7 @@ const firebaseConfig: FirebaseAppConfig = {
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(ROUTES),
+        AuthRoutingModule,
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireAuthModule,
         AngularFireDatabaseModule,
