@@ -9,8 +9,8 @@ import { Subscription, Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   template: `
               <div>
-                <app-header></app-header>
-                <app-nav></app-nav>
+                <app-header [user]="user$ | async" (logout)="onLogout()"></app-header>
+                <app-nav *ngIf='(user$ | async)?.authenticated' ></app-nav>
                 <div class="wrapper">
                   <router-outlet></router-outlet>
                 </div>
@@ -27,6 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authSub = this.authService.auth$.subscribe();
     this.user$ = this.store.select<User>('user');
+  }
+  onLogout() {
+    console.log('logout');
   }
   ngOnDestroy() {
     if (this.authSub) {

@@ -1,1 +1,14 @@
-header
+<div id="app-header"
+     class="d-flex align-items-center justify-content-between">
+    <div class="side"></div>
+    <div class="text-center">
+        <img width="200"
+             src="assets/img/fit.jpg"
+             alt="logo">
+    </div>
+    <div class="side">
+        <span *ngIf="user?.authenticated"
+              class="p-3  logout-btn oi oi-account-logout"
+              (click)="logoutUser()"></span>
+    </div>
+</div>
