@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { SharedModule } from '../../../shared/shared.module';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { AuthService } from 'src/auth/shared/services/auth/auth.service';
 
 describe('ReigsterComponent', () => {
 
@@ -18,6 +19,9 @@ describe('ReigsterComponent', () => {
           [{ path: 'auth/login', component: DummyLoginComponent }]
         ),
         SharedModule
+      ],
+      providers: [
+        { provide: AuthService, useClass: AuthServiceStub }
       ],
       declarations: [
         RegisterComponent
@@ -106,4 +110,8 @@ describe('ReigsterComponent', () => {
 @Component({
   template: ``
 })
-export class DummyLoginComponent { }
+class DummyLoginComponent { }
+
+class AuthServiceStub {
+
+}

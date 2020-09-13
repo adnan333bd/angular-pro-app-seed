@@ -38,4 +38,8 @@ export class AuthService {
     loginUser(email: string, password: string): Promise<any> {
         return this.af.signInWithEmailAndPassword(email, password);
     }
+
+    logoutUser(): Promise<any> {
+        return this.af.signOut();
+    }
 }

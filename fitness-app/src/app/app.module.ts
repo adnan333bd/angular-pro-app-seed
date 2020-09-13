@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // feature module
 import { AuthModule } from '../auth/auth.module';
+import { HealthModule } from '../health/health.module';
 
 import { Store } from 'store';
 
@@ -27,7 +28,8 @@ import { Store } from 'store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    HealthModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]
