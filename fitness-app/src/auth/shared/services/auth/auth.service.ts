@@ -31,6 +31,10 @@ export class AuthService {
         private store: Store
     ) { }
 
+    get authState() {
+        return this.af.authState;
+    }
+
     createUser(email: string, password): Promise<any> {
         return this.af.createUserWithEmailAndPassword(email, password);
     }
