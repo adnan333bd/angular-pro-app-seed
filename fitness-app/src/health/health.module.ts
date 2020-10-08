@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// guards
 import { AuthGuard } from 'src/auth/shared/guards/auth.guard';
+
+// shared module
+import { SharedModule } from './shared/shared.module';
 
 export const ROUTES: Routes = [
     { path: 'meals', canActivate: [AuthGuard], loadChildren: () => import('./meals/meals.module').then(m => m.MealsModule) },
@@ -9,6 +14,9 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(ROUTES)]
+    imports: [
+        RouterModule.forChild(ROUTES),
+        SharedModule.forRoot()
+    ]
 })
 export class HealthModule { }
