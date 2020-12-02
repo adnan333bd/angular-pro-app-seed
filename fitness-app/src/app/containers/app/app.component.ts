@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
               <div>
                 <app-header [user]="user$ | async" (logout)="onLogout()"></app-header>
                 <app-nav *ngIf='(user$ | async)?.authenticated' ></app-nav>
-                <div class="wrapper">
+                <div class="wrapper mx-5 py-3">
                   <router-outlet></router-outlet>
                 </div>
               </div>

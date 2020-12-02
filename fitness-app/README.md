@@ -28,3 +28,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 https://www.youtube.com/watch?v=va5mY68yo4A&list=PL8jcXf-CLpxolmjV5_taFP0c5LyCveDF1&index=1 
+
+
+https://stackoverflow.com/questions/35922071/warn-user-of-unsaved-changes-before-leaving-page

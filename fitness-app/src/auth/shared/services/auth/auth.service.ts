@@ -14,7 +14,7 @@ export interface User {
 @Injectable()
 export class AuthService {
 
-    auth$ = this.af.authState.pipe(tap((next => {
+    auth$ = this.angularFireAuth.authState.pipe(tap((next => {
         if (!next) {
             this.store.set('user', null);
             return;
@@ -28,27 +28,27 @@ export class AuthService {
     })));
 
     constructor(
-        private af: AngularFireAuth,
+        private angularFireAuth: AngularFireAuth,
         private store: Store
     ) { }
 
     get user$() {
-        return from(this.af.currentUser);
+        return from(this.angularFireAuth.currentUser);
     }
 
     get authState() {
-        return this.af.authState;
+        return this.angularFireAuth.authState;
     }
 
     createUser(email: string, password): Promise<any> {
-        return this.af.createUserWithEmailAndPassword(email, password);
+        return this.angularFireAuth.createUserWithEmailAndPassword(email, password);
     }
 
     loginUser(email: string, password: string): Promise<any> {
-        return this.af.signInWithEmailAndPassword(email, password);
+        return this.angularFireAuth.signInWithEmailAndPassword(email, password);
     }
 
     logoutUser(): Promise<any> {
-        return this.af.signOut();
+        return this.angularFireAuth.signOut();
     }
 }

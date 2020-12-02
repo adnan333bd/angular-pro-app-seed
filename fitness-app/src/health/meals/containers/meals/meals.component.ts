@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from 'store';
 
@@ -9,7 +9,7 @@ import { Meal, MealsService } from '../../../shared/services/meals/meals.service
     templateUrl: 'meals.component.html'
 })
 
-export class MealsComponent implements OnInit {
+export class MealsComponent implements OnInit, OnDestroy {
     subMeals: Subscription;
     meals$: Observable<Meal[]>;
 
@@ -17,8 +17,8 @@ export class MealsComponent implements OnInit {
         private store: Store) { }
 
     ngOnInit() {
-        this.meals$ = this.store.select<Meal[]>('meals');
         this.subMeals = this.mealsService.meals$.subscribe();
+        this.meals$ = this.store.select<Meal[]>('meals');
     }
 
     ngOnDestroy() {
