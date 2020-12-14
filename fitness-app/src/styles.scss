@@ -36,7 +36,8 @@ $warning: #5f5f5f;
 $light: #eceeec;
 $dark: #111111;
 @import "bootstrap";
+@import 'assets/font/css/open-iconic-bootstrap.scss';
 
+// Required
 // Add SASS theme customizations here..
 
-@import 'assets/font/css/open-iconic-bootstrap.scss';

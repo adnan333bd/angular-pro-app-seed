@@ -1,27 +1,40 @@
-<div class="meals">
-    <div class="meals__title card">
-        <div class="card-body shadow-sm d-flex justify-content-between align-items-center">
-            <h1>
-                Your meals
-            </h1>
+<div class="meals card shadow">
+    <div class="card-header bg-light">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Yours Meals</span>
+
             <a [routerLink]="['../meals/new']"
-               class="btn__add btn btn-secondary">
-                <i class="oi oi-plus mr-2"></i>
+               class="btn__add btn btn-sm btn-primary pull-right">
+                <i class="oi oi-plus mr-2 "></i>
                 New Meal
             </a>
         </div>
+
     </div>
-    <div *ngIf="meals$ | async as meals; else loading;">
-        <div class="message text-center p-3 bg-light"
-             *ngIf="!meals.length">
-            <i class="oi oi-audio mr-2"></i>
-            No meals, add a new meal
+    <div class="card-body">
+        <div *ngIf="meals$ | async as meals; else loading;">
+            <div class="message text-center p-3 bg-light"
+                 *ngIf="!meals.length">
+                <i class="oi oi-audio mr-2"></i>
+                No meals, add a new meal
+            </div>
+
         </div>
+        <ng-template #loading>
+            <div class="message text-center p-3 bg">
+                <i class="oi oi-loop-circular mr-2"></i>
+                Fetching meals...
+            </div>
+        </ng-template>
     </div>
-    <ng-template #loading>
-        <div class="message text-center p-3 bg">
-            <i class="oi oi-loop-circular mr-2"></i>
-            Fetching meals...
-        </div>
-    </ng-template>
 </div>
+
+<!-- <div class="meals">
+    <div class="meals__title card">
+        <div class="card-body shadow-sm d-flex justify-content-between align-items-center">
+            
+        </div>
+    </div>
+    
+</div> -->

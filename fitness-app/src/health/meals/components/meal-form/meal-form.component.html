@@ -1,0 +1,59 @@
+<div class="meal-form mx-md-5 px-lg-5">
+    <form class="m-3"
+          [formGroup]="mealForm">
+        <div class="form-group">
+            <label for="name">Meal name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   formControlName="name"
+                   required
+                   [ngClass]="{'is-invalid': nameRequired}"
+                   placeholder="e.g. breakfast">
+            <div *ngIf="nameRequired"
+                 class="invalid-feedback">
+                Please enter name
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <h5>food</h5>
+            <div>
+                <button class="btn btn-sm btn-primary"
+                        type="button"
+                        (click)="onAddIngredient()">
+                    <i class="oi oi-plus mr-2"></i>
+                    Add
+                </button>
+            </div>
+        </div>
+
+        <div formArrayName="ingredients">
+            <div *ngFor="let c of ingredients.controls; index as i"
+                 class="input-group mt-2">
+                <input type="text"
+                       [formControlName]="i"
+                       class="form-control"
+                       placeholder="e.g. Eggs">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"
+                            (click)="removeIngredients(i)">
+                        <i class="oi oi-x "></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr class="mt-4 ">
+    <div>
+        <button class="btn btn-sm btn-primary"
+                type="button"
+                [disabled]="!mealForm.valid"
+                (click)="onCreateMeal()">
+            Create Meal
+        </button>
+        <a class="btn btn-secondary btn-sm ml-3"
+           [routerLink]="['../']">Cancel</a>
+    </div>
+
+</div>
