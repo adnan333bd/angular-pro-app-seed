@@ -1,5 +1,6 @@
 <div class="auth-form p-5 bg-white border shadow-sm">
-    <form autocomplete="off" (ngSubmit)="onSubmit()"
+    <form autocomplete="off"
+          (ngSubmit)="onSubmit()"
           [formGroup]="form">
 
         <ng-content select="h1"></ng-content>
@@ -10,6 +11,7 @@
                 <input id="user-email"
                        type="email"
                        class="form-control"
+                       autocomplete="email"
                        [ngClass]="{'is-invalid': emailRequiredError || emailPatternError}"
                        formControlName="email">
                 <div class="invalid-feedback text-danger">
@@ -23,6 +25,7 @@
                 Password
                 <input id="user-password"
                        type="password"
+                       autocomplete="current-password"
                        class="form-control"
                        [ngClass]="{'is-invalid': passwordRequiredError}"
                        formControlName="password">

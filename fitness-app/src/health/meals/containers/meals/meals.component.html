@@ -19,6 +19,8 @@
                 <i class="oi oi-audio mr-2"></i>
                 No meals, add a new meal
             </div>
+            <app-list-item [item]="meal"
+                           *ngFor="let meal of meals"></app-list-item>
 
         </div>
         <ng-template #loading>

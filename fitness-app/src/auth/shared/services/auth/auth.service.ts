@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { from, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Store } from 'store';
@@ -14,7 +13,7 @@ export interface User {
 @Injectable()
 export class AuthService {
 
-    auth$ = this.angularFireAuth.authState.pipe(tap((next => {
+    sub_for_storing_user$ = this.angularFireAuth.authState.pipe(tap((next => {
         if (!next) {
             this.store.set('user', null);
             return;
@@ -32,11 +31,11 @@ export class AuthService {
         private store: Store
     ) { }
 
-    get user$() {
-        return from(this.angularFireAuth.currentUser);
+    get user_from_store$() {
+        return this.store.select<User>('user');
     }
 
-    get authState() {
+    get user_from_fb$() {
         return this.angularFireAuth.authState;
     }
 

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.authSub = this.authService.auth$.subscribe();
+    this.authSub = this.authService.sub_for_storing_user$.subscribe();
     this.user$ = this.store.select<User>('user');
   }
 

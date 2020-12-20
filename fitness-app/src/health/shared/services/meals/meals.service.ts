@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { map, share, switchMap, tap } from 'rxjs/operators';
+import { map, share, switchMap, take, tap } from 'rxjs/operators';
 import { AuthService } from 'src/auth/shared/services/auth/auth.service';
 import { Store } from 'store';
 
@@ -23,12 +23,18 @@ export class MealsService {
 
 
     get meals$(): Observable<Meal[]> {
-        return this.authService.user$
+        return this.authService.user_from_store$
             .pipe(
                 switchMap(user => this.db.list(`meals/${user.uid}`).valueChanges()),
                 tap(next => this.store.set('meals', next)),
                 share()
             ) as Observable<Meal[]>;
+    }
+
+    addMeal(meal: Meal) {
+        const user = this.authService.user_from_store$.pipe(take(1)).subscribe(user => {
+            this.db.list(`meals/${user.uid}`).push(meal);
+        });
     }
 
 }

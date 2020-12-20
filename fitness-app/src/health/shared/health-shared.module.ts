@@ -8,20 +8,27 @@ import { MealsService } from './services/meals/meals.service';
 // third party
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+//
+import { ListItemComponent } from './components/list-item/list-item.component';
+
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         AngularFireDatabaseModule
     ],
-    exports: [],
-    declarations: [],
+    exports: [
+        ListItemComponent
+    ],
+    declarations: [
+        ListItemComponent
+    ],
     providers: [],
 })
-export class SharedModule {
-    static forRoot(): ModuleWithProviders<SharedModule> {
+export class HealthSharedModule {
+    static forRoot(): ModuleWithProviders<HealthSharedModule> {
         return {
-            ngModule: SharedModule,
+            ngModule: HealthSharedModule,
             providers: [MealsService]
         }
     }
