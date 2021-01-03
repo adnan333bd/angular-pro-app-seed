@@ -24,10 +24,11 @@ export class Store {
     }
 
     select<T>(name: string): Observable<T> {
-        return this.appState$.pipe(pluck(name));
+        return this.appState$.pipe(pluck(name), distinctUntilChanged());
     }
 
     set(name: string, value: any): void {
+        console.log('setting ', name);
         this.subject.next({ ...this.currentState, [name]: value });
     }
 }

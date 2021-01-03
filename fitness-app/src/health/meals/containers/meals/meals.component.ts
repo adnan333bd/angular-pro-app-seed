@@ -21,6 +21,10 @@ export class MealsComponent implements OnInit, OnDestroy {
         this.meals$ = this.store.select<Meal[]>('meals');
     }
 
+    onRemove(meal: Meal) {
+        this.mealsService.removeMeal(meal);
+    }
+
     ngOnDestroy() {
         if (this.subMeals) {
             this.subMeals.unsubscribe();

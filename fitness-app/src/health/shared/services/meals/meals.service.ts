@@ -17,6 +17,7 @@ export interface Meal {
 export class MealsService {
 
 
+
     constructor(private store: Store,
         private db: AngularFireDatabase,
         private authService: AuthService) { }
@@ -25,7 +26,9 @@ export class MealsService {
     get meals$(): Observable<Meal[]> {
         return this.authService.user_from_store$
             .pipe(
-                switchMap(user => this.db.list(`meals/${user.uid}`).valueChanges()),
+                switchMap(user => this.db.list(`meals/${user.uid}`).snapshotChanges().pipe(
+                    map(changes => changes.map((c: any) => ({ $key: c.payload.key, ...c.payload.val() }))),
+                )),
                 tap(next => this.store.set('meals', next)),
                 share()
             ) as Observable<Meal[]>;
@@ -34,6 +37,12 @@ export class MealsService {
     addMeal(meal: Meal) {
         const user = this.authService.user_from_store$.pipe(take(1)).subscribe(user => {
             this.db.list(`meals/${user.uid}`).push(meal);
+        });
+    }
+
+    removeMeal(meal: Meal) {
+        const user = this.authService.user_from_store$.pipe(take(1)).subscribe(user => {
+            this.db.list(`meals/${user.uid}`).remove(meal.$key);
         });
     }
 

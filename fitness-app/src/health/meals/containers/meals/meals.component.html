@@ -20,6 +20,7 @@
                 No meals, add a new meal
             </div>
             <app-list-item [item]="meal"
+                           (remove)="onRemove(meal)"
                            *ngFor="let meal of meals"></app-list-item>
 
         </div>

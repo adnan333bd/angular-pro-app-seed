@@ -1,1 +1,33 @@
-{{item | json}}
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <a [routerLink]="getRoute(item)">
+            {{item.name}}
+        </a>
+        <p class="text-muted font-italic">
+            {{item.ingredients | json}}
+        </p>
+    </div>
+    <div class="d-flex align-items-center">
+        <div *ngIf="toggled">
+            <span>Delete item?</span>
+            <button type="button"
+                    class="btn btn-outline-danger btn-sm mx-2"
+                    (click)="removeItem()">Yes</button>
+            <button type="button"
+                    class="btn btn-outline-info btn-sm"
+                    (click)="toggle()">No</button>
+        </div>
+
+        <div>
+            <button type="button"
+                    class="btn btn-danger btn-sm ml-3"
+                    (click)="toggle()">
+                <i class="oi oi-trash"></i>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</div>
